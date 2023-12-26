@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work Buffalo</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a id="menu_navbar" class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a id="menu_home" class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a id="menu_about" class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a id="menu_contract" class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div id="btn_language" onclick="togglelang()" class="btn btn-primary">
+                Language : EN
+          </div>
+        </div>
+      </nav>
+
+      <div class="container mt-S">
+        <h1 id="txt_hello">Hello world</h1>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+      <script>
+        var th = {
+            menu_navbar: 'เมนู',
+            menu_home: 'หน้าแรก',
+            menu_about: 'เกี่ยวกับ',
+            menu_contact: 'ติดต่อ',
+            txt_hello: 'สวัสดีวันอังคาร',
+            btn_language: 'ภาษา : ไทย',
+        }
+        var en = {
+            menu_navbar: 'Navbar',
+            menu_home: 'Home',
+            menu_about: 'About',
+            menu_contact: 'Contact',
+            txt_hello: 'Hello world',
+            btn_language: 'Language : EN',
+        }
+        function randerlang(){
+
+            if(localStorage.lang) {
+                localStorage.setItem('lang','en')
+            }
+            else{
+                $("#menu_navbar").text( settext('menu_navbar') )
+                $("#menu_home").text( settext('menu_home') )
+                $("#menu_about").text( settext('menu_about') )
+                $("#menu_contact").text( settext('menu_contact') )
+                $("#txt_hello").text( settext('txt_hello') )
+                $("#btn_language").text( settext('btn_language') )
+            }
+        }
+
+        function settext(key){
+            if(localStorage.lang == 'en') {
+                return en[key];
+            }else{
+                return th[key]
+            }
+        }
+
+        function togglelang() {
+            if(localStorage.lang == 'en')
+                localStorage.setItem('lang','th')
+            else if (localStorage.lang == 'th')
+                localStorage.setItem('lang', 'en')
+
+            randerlang();
+            return 'now language' + localStorage.lang;
+        }
+      </script>
+</body>
+</html>
